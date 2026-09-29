@@ -23,9 +23,8 @@ const userSchema = new mongoose.Schema({
         required: [ true, "Password is required"],
         minLength: [ 6, "Password must be at least 6 characters long"]
     }
-
-
-}, options = {
+    
+}, {
     timestamps:true
 });
 

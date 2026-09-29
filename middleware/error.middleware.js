@@ -46,6 +46,7 @@ const errorHandler = (err, req, res, next) => {
 
 }
 
+export default errorHandler;
 
 // Create a Subscription 
 // -> middleware [ check for renewal date and subscription status in subscription model ]

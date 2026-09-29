@@ -9,11 +9,15 @@ const errorHandler = (err, req, res, next) => {
 
         console.log(err);
 
+        // Mongoose bad ObjectId
+
         if( err.name  === "CastError" ){
             const message = 'Resource Not Found';
             error = new Error(message);
             error.statusCode = 404;
         }
+
+        // Mongoose duplicate key
 
         if( err.code === 11000 ){
             const message = 'Duplicate field value entered';
@@ -21,11 +25,15 @@ const errorHandler = (err, req, res, next) => {
             error.statusCode = 400;
         }
 
+        // Mongoose validation error
+
         if( err.name === "ValidationError" ){
             const message = Object.values(err.errors).map( value => value.message );
             error = new Error(message, join(', '));
             error.statusCode = 400;
         }
+
+        // Send error response
 
         res.status( error.statusCode || 500 ).json({
                 success:false,

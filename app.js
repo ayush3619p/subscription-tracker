@@ -10,13 +10,16 @@ import connectToDatabase from "./database/mongodb.js";
 import cookieParser from "cookie-parser";
 
 import errorHandler  from "./middleware/error.middleware.js";
+import arcjetMiddleware from "./middleware/arcjet.middleware.js";
 
 
 const app = express();
 
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(arcjetMiddleware);
 
 //forward slahes to the routers
 
